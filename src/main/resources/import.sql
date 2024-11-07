@@ -1,17 +1,17 @@
 -- Jogadores
-INSERT INTO jogador (id, nome) VALUES (1, 'Carlos Silva');
-INSERT INTO jogador (id, nome) VALUES (2, 'João Santos');
-INSERT INTO jogador (id, nome) VALUES (3, 'Roberto Souza');
-INSERT INTO jogador (id, nome) VALUES (4, 'Pedro Oliveira');
-INSERT INTO jogador (id, nome) VALUES (5, 'Marcos Lima');
-INSERT INTO jogador (id, nome) VALUES (6, 'Lucas Carvalho');
-INSERT INTO jogador (id, nome) VALUES (7, 'Daniel Ferreira');
-INSERT INTO jogador (id, nome) VALUES (8, 'José Costa');
+INSERT INTO jogador (nome) VALUES ('Carlos Silva');
+INSERT INTO jogador (nome) VALUES ('João Santos');
+INSERT INTO jogador (nome) VALUES ('Roberto Souza');
+INSERT INTO jogador (nome) VALUES ('Pedro Oliveira');
+INSERT INTO jogador (nome) VALUES ('Marcos Lima');
+INSERT INTO jogador (nome) VALUES ('Lucas Carvalho');
+INSERT INTO jogador (nome) VALUES ('Daniel Ferreira');
+INSERT INTO jogador (nome) VALUES ('José Costa');
 
 -- -- Partidas
-INSERT INTO partida (gols_timea, gols_timeb, data_hora, id, local) VALUES (2, 3, '2024-11-05T10:00:00', 1, 'Campo Central');
+INSERT INTO partida (gols_timea, gols_timeb, data_hora, local) VALUES (2, 3, '2024-11-05T10:00:00', 'Campo Central');
 
-INSERT INTO partida (gols_timea, gols_timeb, data_hora, id, local) VALUES (1, 1, '2024-11-12T16:00:00', 2, 'Campo Sul');
+INSERT INTO partida (gols_timea, gols_timeb, data_hora, local) VALUES (1, 1, '2024-11-12T16:00:00', 'Campo Sul');
 
 -- -- Jogadores nos Times das Partidas
 INSERT INTO PARTIDA_JOGADORES_TIMEA (PARTIDA_ID, JOGADORES_TIMEA_ID) VALUES (1, 1);

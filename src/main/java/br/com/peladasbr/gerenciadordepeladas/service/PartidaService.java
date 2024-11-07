@@ -1,7 +1,6 @@
 package br.com.peladasbr.gerenciadordepeladas.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +21,20 @@ public class PartidaService {
         return partidaRepository.findAll();
     }
 
-    public Optional<Partida> buscarPartida(Long id) {
-        return partidaRepository.findById(id);
-    }
+    public Partida buscarPartida(Long id) {
+		return partidaRepository.findById(id).orElseThrow();
+	}
 
     public Partida atualizarResultado(Long id, Integer golsTimeA, Integer golsTimeB) {
-        Partida partida = partidaRepository.findById(id).orElseThrow();
+        Partida partida = buscarPartida(id);
         partida.setGolsTimeA(golsTimeA);
         partida.setGolsTimeB(golsTimeB);
         return partidaRepository.save(partida);
+    }
+    
+    public void deletarPartida(Long id) {
+    	buscarPartida(id);
+    	partidaRepository.deleteById(id);
     }
 }
 

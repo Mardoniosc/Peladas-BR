@@ -3,6 +3,9 @@ package br.com.peladasbr.gerenciadordepeladas.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,11 +34,26 @@ public class PartidaController {
         return partidaService.listarPartidas();
     }
 
+    @GetMapping("/{id}")
+	public ResponseEntity<Partida> buscarPartida(@PathVariable Long id) {
+    	Partida obj = partidaService.buscarPartida(id);
+		return ResponseEntity.ok().body(obj);
+	}
+
     @PutMapping("/{id}/resultado")
     public Partida atualizarResultado(
             @PathVariable Long id,
             @RequestParam Integer golsTimeA,
             @RequestParam Integer golsTimeB) {
         return partidaService.atualizarResultado(id, golsTimeA, golsTimeB);
+    }
+    
+    @DeleteMapping("/{id}")
+    public void deletarPartida(@PathVariable Long id) {
+		try {
+			partidaService.deletarPartida(id);			
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Não é possível excluir uma partida que possui jogadores");
+		}
     }
 }
