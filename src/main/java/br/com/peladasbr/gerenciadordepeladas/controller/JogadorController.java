@@ -14,44 +14,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.peladasbr.gerenciadordepeladas.entity.Partida;
-import br.com.peladasbr.gerenciadordepeladas.service.PartidaService;
+import br.com.peladasbr.gerenciadordepeladas.entity.Jogador;
+import br.com.peladasbr.gerenciadordepeladas.service.JogadorService;
 
 @RestController
-@RequestMapping("/api/partidas")
-public class PartidaController {
+@RequestMapping("/api/jogadores")
+public class JogadorController {
     @Autowired
-    private PartidaService partidaService;
+    private JogadorService jogadorService;
 
     @PostMapping
-    public Partida criarPartida(@RequestBody Partida partida) {
-        return partidaService.criarPartida(partida);
+    public Jogador criarJogador(@RequestBody Jogador jogador) {
+        return jogadorService.criarJogador(jogador);
     }
 
     @GetMapping
-    public List<Partida> listarPartidas() {
-        return partidaService.listarPartidas();
+    public List<Jogador> listarJogadors() {
+        return jogadorService.listarJogadors();
     }
 
     @GetMapping("/{id}")
-	public Partida buscarPartida(@PathVariable Long id) {
-    	return partidaService.buscarPartida(id);
+	public Jogador buscarJogador(@PathVariable Long id) {
+    	return jogadorService.buscarJogador(id);
 	}
 
-    @PutMapping("/{id}/resultado")
-    public Partida atualizarResultado(
+    @PutMapping("/{id}")
+    public Jogador atualizarNome(
             @PathVariable Long id,
-            @RequestParam Integer golsTimeA,
-            @RequestParam Integer golsTimeB) {
-        return partidaService.atualizarResultado(id, golsTimeA, golsTimeB);
+            @RequestParam String nome) {
+        return jogadorService.atualizarNome(id, nome);
     }
     
     @DeleteMapping("/{id}")
-    public void deletarPartida(@PathVariable Long id) {
+    public void deletarJogador(@PathVariable Long id) {
 		try {
-			partidaService.deletarPartida(id);			
+			jogadorService.deletarJogador(id);			
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Não é possível excluir uma partida que possui jogadores");
+			throw new DataIntegrityViolationException("Não é possível excluir o jogador!");
 		}
     }
 }
