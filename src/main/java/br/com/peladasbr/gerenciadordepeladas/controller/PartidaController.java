@@ -53,6 +53,12 @@ public class PartidaController {
         return partidaService.atualizarResultado(id, golsTimeA, golsTimeB);
     }
     
+    @Operation(summary = "Atualiza os jogadores da partida")
+    @PutMapping("/jogadores")
+    public Partida atualizarJogadores(@RequestBody Partida partida) {
+        return partidaService.atualizarJogadoresTimes(partida);
+    }
+    
     @Operation(summary = "Exclui uma partida")
     @DeleteMapping("/{id}")
     public void deletarPartida(@PathVariable Long id) {

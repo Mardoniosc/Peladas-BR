@@ -32,6 +32,13 @@ public class PartidaService {
         return partidaRepository.save(partida);
     }
     
+    public Partida atualizarJogadoresTimes(Partida partidaAtualizada) {
+    	Partida partida = buscarPartida(partidaAtualizada.getId());
+    	partida.setJogadoresTimeA(partidaAtualizada.getJogadoresTimeA());
+    	partida.setJogadoresTimeB(partidaAtualizada.getJogadoresTimeB());
+    	return partidaRepository.save(partida);
+    }
+    
     public void deletarPartida(Long id) {
     	buscarPartida(id);
     	partidaRepository.deleteById(id);
