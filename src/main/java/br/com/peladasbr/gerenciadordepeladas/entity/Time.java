@@ -10,13 +10,21 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Time {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    
-    @OneToMany
-    private List<Jogador> jogadores;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+
+	@OneToMany
+	private List<Jogador> jogadores;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -33,6 +41,5 @@ public class Time {
 	public void setJogadores(List<Jogador> jogadores) {
 		this.jogadores = jogadores;
 	}
-    
-    
+
 }
